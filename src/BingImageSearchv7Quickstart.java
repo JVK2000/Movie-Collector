@@ -47,8 +47,6 @@ class BingImageSearchv7Quickstart {
 
     static String path = "/bing/v7.0/images/search";
 
-    static String searchTerm = "1917 cover";
-
 
     public static SearchResults SearchImages (String searchQuery) throws Exception {
 
@@ -97,7 +95,7 @@ class BingImageSearchv7Quickstart {
             Path moviePath = Paths.get(fileName);
             Scanner scanner = new Scanner(moviePath);
 
-            try(FileWriter fw = new FileWriter("E:\\Movies/movieCoversURLs.txt", true);
+            try(FileWriter fw = new FileWriter("E:\\Movies/movieCoversURLs.txt", false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw))
             {
@@ -107,11 +105,11 @@ class BingImageSearchv7Quickstart {
                     SearchResults result = SearchImages(searchTerm + " poster");
                     JsonParser parser = new JsonParser();
                     JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
-                    //String total = json.get("totalEstimatedMatches").getAsString();
                     JsonArray results = json.getAsJsonArray("value");
                     JsonObject first_result = (JsonObject)results.get(0);
                     String resultURL = first_result.get("thumbnailUrl").getAsString();
                     out.println(resultURL);
+                    System.out.println(resultURL);
                     TimeUnit.MILLISECONDS.sleep(500);
 
                 } scanner.close();
