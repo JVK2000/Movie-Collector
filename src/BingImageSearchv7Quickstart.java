@@ -48,11 +48,11 @@ class BingImageSearchv7Quickstart {
     static String path = "/bing/v7.0/images/search";
 
 
-    public static SearchResults SearchImages (String searchQuery) throws Exception {
+    public static SearchResults SearchImages(String searchQuery) throws Exception {
 
         // construct URL of search request (endpoint + query string)
-        URL url = new URL(host + path + "?q=" +  URLEncoder.encode(searchQuery, "UTF-8"));
-        HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+        URL url = new URL(host + path + "?q=" + URLEncoder.encode(searchQuery, "UTF-8"));
+        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
         connection.setRequestProperty("Ocp-Apim-Subscription-Key", subscriptionKey);
 
         // receive JSON body
@@ -83,52 +83,43 @@ class BingImageSearchv7Quickstart {
         return gson.toJson(json);
     }
 
-    public static void main (String[] args) {
-       /* if (subscriptionKey.length() != 32) {
-            System.out.println("Invalid Bing Search API subscription key!");
-            System.out.println("Please paste yours into the source code.");
-            System.exit(1);
-        }*/
+    public static void main(String[] args) throws Exception {
+        String fileName = "E://Movies/movies.txt";
+        Path moviePath = Paths.get(fileName);
+        Scanner scanner = new Scanner(moviePath);
 
-        try {
-            String fileName = "E://Movies/movies.txt";
-            Path moviePath = Paths.get(fileName);
-            Scanner scanner = new Scanner(moviePath);
+        FileWriter fw = new FileWriter("E:\\Movies/movieCoversURLs.txt", false);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw);
 
-            try(FileWriter fw = new FileWriter("E:\\Movies/movieCoversURLs.txt", false);
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw))
-            {
-                while (scanner.hasNextLine()) {
-                    String searchTerm = scanner.nextLine().split("\\.")[0];
-                    System.out.println("Searching the Web for: " + searchTerm + " poster");
-                    SearchResults result = SearchImages(searchTerm + " poster");
-                    JsonParser parser = new JsonParser();
-                    JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
-                    JsonArray results = json.getAsJsonArray("value");
-                    JsonObject first_result = (JsonObject)results.get(0);
-                    String resultURL = first_result.get("thumbnailUrl").getAsString();
-                    out.println(resultURL);
-                    System.out.println(resultURL);
-                    TimeUnit.MILLISECONDS.sleep(500);
-
-                } scanner.close();
-
-            } catch (IOException e) {
-                //exception handling left as an exercise for the reader
-            }
+        while (scanner.hasNextLine()) {
+            String searchTerm = scanner.nextLine().split("\\.")[0];
+            System.out.println("Searching the Web for: " + searchTerm + " poster");
+            //try {
+                SearchResults result = SearchImages(searchTerm + " poster");
+                JsonParser parser = new JsonParser();
+                JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
+                JsonArray results = json.getAsJsonArray("value");
+                JsonObject first_result = (JsonObject) results.get(0);
+                String resultURL = first_result.get("thumbnailUrl").getAsString();
+                out.println(resultURL);
+                System.out.println(resultURL);
+            /*} catch (Exception e) {
+                out.println("URL missing");
+                System.out.println("URL missing");
+            }*/
+            TimeUnit.MILLISECONDS.sleep(500);
         }
-        catch (Exception e) {
-            e.printStackTrace(System.out);
-            System.exit(1);
-        }
+        scanner.close();
     }
 }
 
+
 // Container class for search results encapsulates relevant headers and JSON data
-class SearchResults{
+class SearchResults {
     HashMap<String, String> relevantHeaders;
     String jsonResponse;
+
     SearchResults(HashMap<String, String> headers, String json) {
         relevantHeaders = headers;
         jsonResponse = json;

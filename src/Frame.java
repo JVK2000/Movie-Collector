@@ -14,9 +14,13 @@ public class Frame {
     private static final int MOVIE_ICONE_HEIGHT = 400;
 
     public static void main(String[] args) throws IOException {
+
         JFrame frame = new JFrame("Movie collecter");
         frame.setSize(1500, 3000);
 
+        Image applicationIcon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Josef\\IdeaProjects\\Movie-Collector\\src\\appIcon.png");
+
+        frame.setIconImage(applicationIcon);
 
         JPanel panel = new JPanel(new GridLayout(0, 8, 25, 25));
         panel.setBackground(Color.DARK_GRAY);
@@ -28,7 +32,6 @@ public class Frame {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (!(line.equals(""))) {
-
                 ImageIcon icon = new ImageIcon("C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + line.split("\\.")[0] + ".JPG");
 
                 // Rescale the image to fit the button
@@ -42,20 +45,16 @@ public class Frame {
                 button.setBackground(Color.DARK_GRAY);
                 button.setForeground(Color.DARK_GRAY);
                 button.setBorder(new LineBorder(Color.DARK_GRAY));
-
                 button.setPreferredSize(new Dimension(MOVIE_ICONE_WIDTH, MOVIE_ICONE_HEIGHT));
-
                 button.addActionListener(new ActionListener()
                 {
                     public void actionPerformed(ActionEvent e)
                     {
                         File file = new File("E:/Movies/Movies/" + line.split("\\.")[0] + "/" + line);
                         Desktop desktop = Desktop.getDesktop();
-
                         if(!(file.exists())) {
                             file = new File("F:/Film/" + line.split("\\.")[0] + "/" + line);
                         }
-
                         if(file.exists()) {
                             try {
                                 desktop.open(file);
@@ -63,7 +62,6 @@ public class Frame {
                                 ioException.printStackTrace();
                             }
                         }
-
                     }
                 });
                 panel.add(button);
@@ -75,12 +73,9 @@ public class Frame {
         JScrollPane scrPane = new JScrollPane(panel);
         scrPane.getVerticalScrollBar().setUnitIncrement(20);
 
-
         // And JPanel needs to be added to the JFrame itself!
         frame.add(scrPane);
         frame.setVisible(true);
-
     }
-
 }
 
