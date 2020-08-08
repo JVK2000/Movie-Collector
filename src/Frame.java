@@ -28,25 +28,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-/*
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
- */
 
 public class Frame {
     private static final int MOVIE_ICONE_WIDTH = 250;
     private static final int MOVIE_ICONE_HEIGHT = 400;
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException {
         try {
+
             File myObj = new File("settings.json");
             if (myObj.createNewFile()) { // Creates new file
                 Map<String, Integer> columns = new HashMap<>();
                 Columns numOfColumns = new Columns();
-                numOfColumns.setColumns(10);
+                numOfColumns.setColumns(9);
                 columns.put("columns", numOfColumns.getColumns());
 
                 Gson gson = new Gson();
@@ -63,10 +57,21 @@ public class Frame {
             e.printStackTrace();
         }
 
-
-
-            JFrame frame = new JFrame("Movie collecter");
+        JFrame frame = new JFrame("Movie collecter");
         frame.setSize(1500, 3000);
+
+        JPanel startPanel = new JPanel();
+        startPanel.setBackground(Color.DARK_GRAY);
+        startPanel.setForeground(Color.DARK_GRAY);
+        ImageIcon loading = new ImageIcon("gifs/Dual Ring-1.5s-800px (1).gif");
+        loading.setImage(loading.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+        startPanel.setLayout(new GridBagLayout());
+
+        startPanel.add(new JLabel(loading, JLabel.CENTER));
+        frame.add(startPanel);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
 
         //Create the menu bar.
         JMenuBar menuBar = new JMenuBar();
@@ -101,32 +106,46 @@ public class Frame {
         menuItem = new JMenuItem("Another item");
         submenu.add(menuItem);
 
+
+        JMenu submenu2 = new JMenu("Number of colums");
+
+        //a group of check box menu items
+        menu.addSeparator();
+        ButtonGroup group = new ButtonGroup();
+
+        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem("Low");
+        rbMenuItem.addActionListener(new ColumnSettingActionListener(7));
+        group.add(rbMenuItem);
+        submenu2.add(rbMenuItem);
+
+        rbMenuItem = new JRadioButtonMenuItem("Medium");
+        rbMenuItem.addActionListener(new ColumnSettingActionListener(9));
+        rbMenuItem.setSelected(true);
+        group.add(rbMenuItem);
+        submenu2.add(rbMenuItem);
+
+        rbMenuItem = new JRadioButtonMenuItem("Max");
+        rbMenuItem.addActionListener(new ColumnSettingActionListener(11));
+        group.add(rbMenuItem);
+        submenu2.add(rbMenuItem);
+
+        //cbMenuItem.addActionListener(new ColumnSettingActionListener(12));
+        //submenu2.add(cbMenuItem);
+
+        submenu.add(submenu2);
+
         menu.add(submenu);
         frame.setJMenuBar(menuBar);
 
         Image applicationIcon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Josef\\IdeaProjects\\Movie-Collector\\src\\appIcon.png");
         frame.setIconImage(applicationIcon);
 
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(new FileReader("settings.json"));
+        JSONObject json = (JSONObject) parser.parse((String) obj);
+        Long COLUMS = (Long) json.get("columns");
 
-        try {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(new FileReader("settings.json"));
-
-            JSONParser parser2 = new JSONParser();
-            JSONObject json = (JSONObject) parser2.parse((String) obj);
-
-            Long loudScreaming = (Long) json.get("columns");
-
-            System.out.println(loudScreaming);
-
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-        JPanel panel = new JPanel(new GridLayout(0, 10, 25, 25));
+        JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(COLUMS), 25, 25));
         panel.setBackground(Color.DARK_GRAY);
 
         String fileName = "movieList.txt";
@@ -142,7 +161,6 @@ public class Frame {
                 int movieFilePositionInPath = line.split("/").length - 1;
                 String movieFileName = line.split("/")[movieFilePositionInPath];
 
-                System.out.println("C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG");
                 ImageIcon icon = new ImageIcon("C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG");
 
                 // Rescale the image to fit the button
@@ -188,6 +206,7 @@ public class Frame {
 
         }
         scanner.close();
+        frame.remove(startPanel);
 
         // Makes the frame scrolleble
         JScrollPane scrPane = new JScrollPane(panel);
