@@ -191,7 +191,7 @@
 /mnt/e/Movies/Movies/Planet Of The Apes/Dawn of the Planet of the Apes (2014 [1080p]/Dawn of the Planet of the Apes (2014 [1080p].mp4
 /mnt/e/Movies/Movies/Planet Of The Apes/Rise of the Planet of the Apes (2011) [720p]/Rise of the Planet of the Apes (2011) [720p].mp4
 /mnt/e/Movies/Movies/Planet Of The Apes/War For The Planet Of The Apes (2017) [1080p]/War For The Planet Of The Apes (2017) [1080p].mp4
-/mnt/e/Movies/Movies/Pokémon Detective Pikachu (2019) [1080p]/Pokémon Detective Pikachu (2019) [1080p].mp4
+/mnt/e/Movies/Movies/Pokemon Detective Pikachu (2019) [1080p]/Pokémon Detective Pikachu (2019) [1080p].mp4
 /mnt/e/Movies/Movies/Prometheus (2012) [1080p]/Prometheus (2012) [1080p].mp4
 /mnt/e/Movies/Movies/Pulp Fiction (1994) [1080p]/Pulp Fiction (1994) [1080p].mp4
 /mnt/e/Movies/Movies/R.I.P.D. (2013) [1080p]/R.I.P.D. (2013) [1080p].mp4

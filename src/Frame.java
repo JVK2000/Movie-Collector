@@ -1,3 +1,15 @@
+/*import com.google.gson.Gson;
+import org.json.JSONException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+ */
+
+import com.google.gson.Gson;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -5,18 +17,55 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+/*
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+ */
 
 public class Frame {
     private static final int MOVIE_ICONE_WIDTH = 250;
     private static final int MOVIE_ICONE_HEIGHT = 400;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
+        try {
+            File myObj = new File("settings.json");
+            if (myObj.createNewFile()) { // Creates new file
+                Map<String, Integer> columns = new HashMap<>();
+                Columns numOfColumns = new Columns();
+                numOfColumns.setColumns(10);
+                columns.put("columns", numOfColumns.getColumns());
 
-        JFrame frame = new JFrame("Movie collecter");
+                Gson gson = new Gson();
+                String output = gson.toJson(columns);
+
+                Writer writer = Files.newBufferedWriter(Paths.get("settings.json"));
+                gson.toJson(output, writer);
+                writer.close();
+
+            } else { // File already exists.
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
+
+            JFrame frame = new JFrame("Movie collecter");
         frame.setSize(1500, 3000);
 
         //Create the menu bar.
@@ -29,7 +78,6 @@ public class Frame {
                 "The only menu in this program that has menu items");
         menuBar.add(menu);
 
-        //a group of JMenuItems
         JMenuItem menuItem = new JMenuItem("Refrech movie list",
                 KeyEvent.VK_T);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
@@ -37,16 +85,48 @@ public class Frame {
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
         menuItem.addActionListener(new RecfechMovieListActionListener());
-
         menu.add(menuItem);
 
+        //a submenu
+        menu.addSeparator();
+        JMenu submenu = new JMenu("Settings");
+        submenu.setMnemonic(KeyEvent.VK_S);
+
+        menuItem = new JMenuItem("An item in the submenu");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        //menuItem.addActionListener(new ColumnSettingActionListener());
+        submenu.add(menuItem);
+
+        menuItem = new JMenuItem("Another item");
+        submenu.add(menuItem);
+
+        menu.add(submenu);
         frame.setJMenuBar(menuBar);
 
         Image applicationIcon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Josef\\IdeaProjects\\Movie-Collector\\src\\appIcon.png");
-
         frame.setIconImage(applicationIcon);
 
-        JPanel panel = new JPanel(new GridLayout(0, 8, 25, 25));
+
+        try {
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(new FileReader("settings.json"));
+
+            JSONParser parser2 = new JSONParser();
+            JSONObject json = (JSONObject) parser2.parse((String) obj);
+
+            Long loudScreaming = (Long) json.get("columns");
+
+            System.out.println(loudScreaming);
+
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        JPanel panel = new JPanel(new GridLayout(0, 10, 25, 25));
         panel.setBackground(Color.DARK_GRAY);
 
         String fileName = "movieList.txt";
@@ -60,9 +140,9 @@ public class Frame {
 
                 // the movie files name. Splits the string into parts, where / is the devider. Uses the last index to get the movie name.
                 int movieFilePositionInPath = line.split("/").length - 1;
-                String movieFileName = line.split("/")[movieFilePositionInPath - 1];
+                String movieFileName = line.split("/")[movieFilePositionInPath];
 
-
+                System.out.println("C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG");
                 ImageIcon icon = new ImageIcon("C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG");
 
                 // Rescale the image to fit the button
@@ -105,6 +185,7 @@ public class Frame {
                 });
                 panel.add(button);
             }
+
         }
         scanner.close();
 
