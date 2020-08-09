@@ -24,7 +24,11 @@ public class Frame {
     public static final int VGAP = 25;
 
     public static void main(String[] args) throws Exception {
+        createWindow2();
 
+    }
+
+    public static void createWindow2() throws Exception {
         // Creates settings file if no one exists
         SettingManager settingManager = new SettingManager();
         settingManager.createSaveFile();
@@ -32,13 +36,11 @@ public class Frame {
         Long movieIconWidth = settingManager.getMovieDimensionWidth();
         Long movieIconHeight = settingManager.getMovieDimensionHeight();
 
-
-
         Window window = new Window();
         window.setTitle("Movie collector");
         window.setSize(1500, 3000);
         window.addLoadScreen("gifs/Dual Ring-1.5s-800px (1).gif", 200, 200);
-        window.createMenu();
+        window.createMenu(window);
         window.setIconImage("images/appIcon.png");
 
         JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(columns), HGAP, VGAP));

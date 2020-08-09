@@ -10,6 +10,11 @@ public class Menu {
     JMenu menu;
     JMenu submenu, columnSubmenu;
     private ButtonGroup group;
+    Window window;
+
+    public Menu(Window window) {
+        this.window = window;
+    }
 
 
     public void createMenu() {
@@ -50,7 +55,6 @@ public class Menu {
         addMovieIconSizeOption("Large", 1.2);
         addMovieIconSizeOption("Very Large", 1.4);
         addMovieIconSizeOption("Extremely Large", 1.6);
-
         submenu.add(columnSubmenu);
     }
 
@@ -95,7 +99,7 @@ public class Menu {
             Long selectedNumbOfColumns = settingManager.getColumns();
             if (Math.toIntExact(selectedNumbOfColumns) == Columns) rbMenuItem.setSelected(true);
         }
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(Columns));
+        rbMenuItem.addActionListener(new ColumnSettingActionListener(Columns, window));
         group.add(rbMenuItem);
         columnSubmenu.add(rbMenuItem);
     }

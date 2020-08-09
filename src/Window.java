@@ -41,14 +41,20 @@ public class Window {
         scrPane.getVerticalScrollBar().setUnitIncrement(20);
         frame.add(scrPane);
         frame.setVisible(true);
+
+    }
+
+    public void restartApplication() throws Exception {
+        frame.setVisible(false);
+        Frame.createWindow2();
     }
 
     public void removeLoadScreen(){
         frame.remove(startPanel);
     }
 
-    public void createMenu() throws Exception {
-        Menu menu = new Menu();
+    public void createMenu(Window window) throws Exception {
+        Menu menu = new Menu(window);
         menu.createMenu();
         menu.createMenu_refreshMovieList();
         menu.addSeparator();
