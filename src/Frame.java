@@ -15,7 +15,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,7 +31,6 @@ import java.util.Scanner;
 public class Frame {
     private static final int MOVIE_ICONE_WIDTH = 250;
     private static final int MOVIE_ICONE_HEIGHT = 400;
-    public static JFrame frame;
 
     public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, InterruptedException {
         try {
@@ -58,88 +56,12 @@ public class Frame {
             e.printStackTrace();
         }
 
-        frame = new JFrame("Movie collecter");
-        frame.setSize(1500, 3000);
-
-        JPanel startPanel = new JPanel();
-        startPanel.setBackground(Color.DARK_GRAY);
-        startPanel.setForeground(Color.DARK_GRAY);
-        ImageIcon loading = new ImageIcon("gifs/Dual Ring-1.5s-800px (1).gif");
-        loading.setImage(loading.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-        startPanel.setLayout(new GridBagLayout());
-
-        startPanel.add(new JLabel(loading, JLabel.CENTER));
-        frame.add(startPanel);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-        //Create the menu bar.
-        JMenuBar menuBar = new JMenuBar();
-
-        //Build the first menu.
-        JMenu menu = new JMenu("Menu");
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
-        menuBar.add(menu);
-
-        JMenuItem menuItem = new JMenuItem("Refrech movie list",
-                KeyEvent.VK_T);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "This doesn't really do anything");
-        menuItem.addActionListener(new RecfechMovieListActionListener());
-        menu.add(menuItem);
-
-        //a submenu
-        menu.addSeparator();
-        JMenu submenu = new JMenu("Settings");
-        submenu.setMnemonic(KeyEvent.VK_S);
-
-        menuItem = new JMenuItem("An item in the submenu");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        //menuItem.addActionListener(new ColumnSettingActionListener());
-        submenu.add(menuItem);
-
-        menuItem = new JMenuItem("Another item");
-        submenu.add(menuItem);
-
-
-        JMenu submenu2 = new JMenu("Number of colums");
-
-        //a group of check box menu items
-        menu.addSeparator();
-        ButtonGroup group = new ButtonGroup();
-
-        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem("Low");
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(7));
-        group.add(rbMenuItem);
-        submenu2.add(rbMenuItem);
-
-        rbMenuItem = new JRadioButtonMenuItem("Medium");
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(9));
-        rbMenuItem.setSelected(true);
-        group.add(rbMenuItem);
-        submenu2.add(rbMenuItem);
-
-        rbMenuItem = new JRadioButtonMenuItem("Max");
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(11));
-        group.add(rbMenuItem);
-        submenu2.add(rbMenuItem);
-
-        //cbMenuItem.addActionListener(new ColumnSettingActionListener(12));
-        //submenu2.add(cbMenuItem);
-
-        submenu.add(submenu2);
-
-        menu.add(submenu);
-        frame.setJMenuBar(menuBar);
-
-        Image applicationIcon = Toolkit.getDefaultToolkit().getImage("images/appIcon.png");
-        frame.setIconImage(applicationIcon);
+        Window window = new Window();
+        window.setTitle("Movie collecter");
+        window.setSize(1500, 3000);
+        window.addLoadScreen("gifs/Dual Ring-1.5s-800px (1).gif", 100, 100);
+        window.createMenu();
+        window.setIconImage("images/appIcon.png");
 
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(new FileReader("settings.json"));
@@ -207,17 +129,9 @@ public class Frame {
 
         }
         scanner.close();
-        frame.remove(startPanel);
 
-        // Makes the frame scrolleble
-        JScrollPane scrPane = new JScrollPane(panel);
-        scrPane.getVerticalScrollBar().setUnitIncrement(20);
-
-        // And JPanel needs to be added to the JFrame itself!
-        frame.add(scrPane);
-        frame.setVisible(true);
-
-
+        window.removeLoadScreen();
+        window.makeScrolable(panel);
 
     }
 }
