@@ -83,19 +83,19 @@ class BingImageSearchv7Quickstart {
         return gson.toJson(json);
     }
 
-    public static void main(String[] args) throws Exception {
-        String fileName = "E://Movies/movies.txt";
+    /*public static void main(String[] args) throws Exception {
+        String fileName = "movieList.txt";
         Path moviePath = Paths.get(fileName);
         Scanner scanner = new Scanner(moviePath);
 
-        FileWriter fw = new FileWriter("E:\\Movies/movieCoversURLs.txt", false);
+        FileWriter fw = new FileWriter("imageURLs.txt", false);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter out = new PrintWriter(bw);
 
         while (scanner.hasNextLine()) {
             String searchTerm = scanner.nextLine().split("\\.")[0];
             System.out.println("Searching the Web for: " + searchTerm + " poster");
-            //try {
+            try {
                 SearchResults result = SearchImages(searchTerm + " poster");
                 JsonParser parser = new JsonParser();
                 JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
@@ -104,12 +104,50 @@ class BingImageSearchv7Quickstart {
                 String resultURL = first_result.get("thumbnailUrl").getAsString();
                 out.println(resultURL);
                 System.out.println(resultURL);
-            /*} catch (Exception e) {
+            } catch (Exception e) {
                 out.println("URL missing");
                 System.out.println("URL missing");
-            }*/
+            }
             TimeUnit.MILLISECONDS.sleep(500);
         }
+        out.close();
+        scanner.close();
+    }*/
+
+
+    public static void URLSearch() throws IOException, InterruptedException {
+        String fileName = "movieList.txt";
+        Path moviePath = Paths.get(fileName);
+        Scanner scanner = new Scanner(moviePath);
+
+        FileWriter fw = new FileWriter("imageURLs.txt", false);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw);
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            int movieFilePositionInPath = line.split("/").length - 1;
+            String movieFileName = line.split("/")[movieFilePositionInPath];
+
+            String searchTerm = movieFileName.split("\\.")[0];
+
+            System.out.println("Searching the Web for: " + searchTerm + " poster");
+            try {
+                SearchResults result = SearchImages(searchTerm + " poster");
+                JsonParser parser = new JsonParser();
+                JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
+                JsonArray results = json.getAsJsonArray("value");
+                JsonObject first_result = (JsonObject) results.get(0);
+                String resultURL = first_result.get("thumbnailUrl").getAsString();
+                out.println(resultURL);
+                System.out.println(resultURL);
+            } catch (Exception e) {
+                System.out.println(movieFileName + ": " + "URL missing");
+                out.println(movieFileName + ": " + "URL missing");
+            }
+            TimeUnit.MILLISECONDS.sleep(500);
+        }
+        out.close();
         scanner.close();
     }
 }

@@ -15,12 +15,16 @@ public class RecfechMovieListActionListener implements ActionListener {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+
+        BingImageSearchv7Quickstart bingImageSearchv7Quickstart = new BingImageSearchv7Quickstart();
+        try {
+            BingImageSearchv7Quickstart.URLSearch();
+        } catch (IOException | InterruptedException ioException) {
+            ioException.printStackTrace();
+        }
+
     }
 
-        /*int reply = JOptionPane.showConfirmDialog(null, "Exit Game?",
-                null, JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }*/
+
 
 }

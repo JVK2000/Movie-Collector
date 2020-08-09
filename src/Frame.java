@@ -32,8 +32,9 @@ import java.util.Scanner;
 public class Frame {
     private static final int MOVIE_ICONE_WIDTH = 250;
     private static final int MOVIE_ICONE_HEIGHT = 400;
+    public static JFrame frame;
 
-    public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException {
+    public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, InterruptedException {
         try {
 
             File myObj = new File("settings.json");
@@ -57,7 +58,7 @@ public class Frame {
             e.printStackTrace();
         }
 
-        JFrame frame = new JFrame("Movie collecter");
+        frame = new JFrame("Movie collecter");
         frame.setSize(1500, 3000);
 
         JPanel startPanel = new JPanel();
@@ -137,7 +138,7 @@ public class Frame {
         menu.add(submenu);
         frame.setJMenuBar(menuBar);
 
-        Image applicationIcon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Josef\\IdeaProjects\\Movie-Collector\\src\\appIcon.png");
+        Image applicationIcon = Toolkit.getDefaultToolkit().getImage("images/appIcon.png");
         frame.setIconImage(applicationIcon);
 
         JSONParser parser = new JSONParser();
@@ -215,6 +216,9 @@ public class Frame {
         // And JPanel needs to be added to the JFrame itself!
         frame.add(scrPane);
         frame.setVisible(true);
+
+
+
     }
 }
 
