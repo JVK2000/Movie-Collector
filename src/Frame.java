@@ -6,25 +6,15 @@ import org.json.simple.parser.ParseException;
 
  */
 
-import com.google.gson.Gson;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 
@@ -32,43 +22,21 @@ public class Frame {
     private static final int MOVIE_ICONE_WIDTH = 250;
     private static final int MOVIE_ICONE_HEIGHT = 400;
 
-    public static void main(String[] args) throws IOException, ParseException, org.json.simple.parser.ParseException, InterruptedException {
-        try {
+    public static void main(String[] args) throws Exception {
 
-            File myObj = new File("settings.json");
-            if (myObj.createNewFile()) { // Creates new file
-                Map<String, Integer> columns = new HashMap<>();
-                Columns numOfColumns = new Columns();
-                numOfColumns.setColumns(9);
-                columns.put("columns", numOfColumns.getColumns());
-
-                Gson gson = new Gson();
-                String output = gson.toJson(columns);
-
-                Writer writer = Files.newBufferedWriter(Paths.get("settings.json"));
-                gson.toJson(output, writer);
-                writer.close();
-
-            } else { // File already exists.
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+        // Creates settings file if no one exists
+        SettingManager settingManager = new SettingManager();
+        settingManager.createSaveFile();
+        Long columns = settingManager.getColumns();
 
         Window window = new Window();
-        window.setTitle("Movie collecter");
+        window.setTitle("Movie collector");
         window.setSize(1500, 3000);
-        window.addLoadScreen("gifs/Dual Ring-1.5s-800px (1).gif", 100, 100);
+        window.addLoadScreen("gifs/Dual Ring-1.5s-800px (1).gif", 200, 200);
         window.createMenu();
         window.setIconImage("images/appIcon.png");
 
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("settings.json"));
-        JSONObject json = (JSONObject) parser.parse((String) obj);
-        Long COLUMS = (Long) json.get("columns");
-
-        JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(COLUMS), 25, 25));
+        JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(columns), 25, 25));
         panel.setBackground(Color.DARK_GRAY);
 
         String fileName = "movieList.txt";

@@ -1,12 +1,13 @@
 import javax.swing.*;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class Menu {
 
-    JMenuBar menuBar = new JMenuBar();
+    final JMenuBar menuBar = new JMenuBar();
     JMenu menu;
-    JMenu submenu;
+    JMenu submenu, columnSubmenu;
+    private ButtonGroup group;
+
 
     public void createMenu() {
         menu = new JMenu("Menu");
@@ -18,7 +19,7 @@ public class Menu {
 
     public void createMenu_refreshMovieList() {
         JMenuItem menuItem = new JMenuItem("Refresh movie list", KeyEvent.VK_T);
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, InputEvent.ALT_MASK));
+        menuItem.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_1));
         menuItem.addActionListener(new RecfechMovieListActionListener());
         menu.add(menuItem);
     }
@@ -36,39 +37,53 @@ public class Menu {
         submenu.setMnemonic(KeyEvent.VK_S);
     }
 
-    public void createMenu_settings_anItemInTheSubmenu() {
-        JMenuItem menuItem = new JMenuItem("An item in the submenu");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2, InputEvent.ALT_MASK));
-        //menuItem.addActionListener(new ColumnSettingActionListener());
-        submenu.add(menuItem);
-        menuItem = new JMenuItem("Another item");
-        submenu.add(menuItem);
+    public void createMenu_settings_movieIconSize() throws Exception {
+        group = new ButtonGroup();
+        columnSubmenu = new JMenu("Number of colums");
+        addMovieIconSizeOption("Small", 0.8);
+        addMovieIconSizeOption("Medium", 1);
+        addMovieIconSizeOption("Large", 1.2);
+
+        submenu.add(columnSubmenu);
     }
 
-    public void createMenu_settings_numberOfColumns() {
+    public void addMovieIconSizeOption(String optionName, double scale) throws Exception {
+        SettingManager settingManager = new SettingManager();
+        Long selectedNumbOfColumns = settingManager.getColumns();
+
+        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
+        rbMenuItem.addActionListener(new MovieIconSizeSettingActionListener(scale));
+
+        //if (Math.toIntExact(selectedNumbOfColumns) == Columns) rbMenuItem.setSelected(true);
+        group.add(rbMenuItem);
+        columnSubmenu.add(rbMenuItem);
+    }
+
+    public void createMenu_settings_numberOfColumns() throws Exception {
         //a group of check box menu items
         menu.addSeparator();
-        ButtonGroup group = new ButtonGroup();
+        group = new ButtonGroup();
+        columnSubmenu = new JMenu("Number of colums");
+        addNumberOfColumnsOption("5", 5);
+        addNumberOfColumnsOption("6", 6);
+        addNumberOfColumnsOption("7", 7);
+        addNumberOfColumnsOption("8", 8);
+        addNumberOfColumnsOption("9", 9);
+        addNumberOfColumnsOption("10", 10);
+        addNumberOfColumnsOption("11", 11);
 
-        JMenu submenu2 = new JMenu("Number of colums");
+        submenu.add(columnSubmenu);
+    }
 
-        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem("Low");
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(7));
+    public void addNumberOfColumnsOption(String optionName, int Columns) throws Exception {
+        SettingManager settingManager = new SettingManager();
+        Long selectedNumbOfColumns = settingManager.getColumns();
+
+        JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
+        rbMenuItem.addActionListener(new ColumnSettingActionListener(Columns));
+        //if (Math.toIntExact(selectedNumbOfColumns) == Columns) rbMenuItem.setSelected(true);
         group.add(rbMenuItem);
-        submenu2.add(rbMenuItem);
-
-        rbMenuItem = new JRadioButtonMenuItem("Medium");
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(9));
-        rbMenuItem.setSelected(true);
-        group.add(rbMenuItem);
-        submenu2.add(rbMenuItem);
-
-        rbMenuItem = new JRadioButtonMenuItem("Max");
-        rbMenuItem.addActionListener(new ColumnSettingActionListener(11));
-        group.add(rbMenuItem);
-        submenu2.add(rbMenuItem);
-
-        submenu.add(submenu2);
+        columnSubmenu.add(rbMenuItem);
     }
 
 

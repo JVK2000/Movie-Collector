@@ -47,13 +47,13 @@ public class Window {
         frame.remove(startPanel);
     }
 
-    public void createMenu() {
+    public void createMenu() throws Exception {
         Menu menu = new Menu();
         menu.createMenu();
         menu.createMenu_refreshMovieList();
         menu.addSeparator();
         menu.CreateMenu_settings();
-        menu.createMenu_settings_anItemInTheSubmenu();
+        menu.createMenu_settings_movieIconSize();
         menu.createMenu_settings_numberOfColumns();
         menu.addSubmenuToMenu();
         frame.setJMenuBar(menu.getMenuBar());

@@ -60,7 +60,7 @@ class BingImageSearchv7Quickstart {
         String response = new Scanner(stream).useDelimiter("\\A").next();
 
         // construct result object for return
-        SearchResults results = new SearchResults(new HashMap<String, String>(), response);
+        SearchResults results = new SearchResults(new HashMap<>(), response);
 
         // extract Bing-related HTTP headers
         Map<String, List<String>> headers = connection.getHeaderFields();
@@ -155,8 +155,8 @@ class BingImageSearchv7Quickstart {
 
 // Container class for search results encapsulates relevant headers and JSON data
 class SearchResults {
-    HashMap<String, String> relevantHeaders;
-    String jsonResponse;
+    final HashMap<String, String> relevantHeaders;
+    final String jsonResponse;
 
     SearchResults(HashMap<String, String> headers, String json) {
         relevantHeaders = headers;
