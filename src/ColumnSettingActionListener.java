@@ -12,7 +12,6 @@ public class ColumnSettingActionListener implements ActionListener {
 
    public ColumnSettingActionListener(int i) {
       this.numbOfColumn = i;
-      System.out.println(numbOfColumn);
    }
 
    public void actionPerformed(ActionEvent e) {

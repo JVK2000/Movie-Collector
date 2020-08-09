@@ -9,7 +9,6 @@ public class MovieIconSizeSettingActionListener implements ActionListener {
 
     public MovieIconSizeSettingActionListener(double i) {
         this.numbOfColumn = i;
-        System.out.println(numbOfColumn);
     }
 
     public void actionPerformed(ActionEvent e) {

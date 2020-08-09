@@ -19,8 +19,9 @@ import java.util.Scanner;
 
 
 public class Frame {
-    private static final int MOVIE_ICONE_WIDTH = 250;
-    private static final int MOVIE_ICONE_HEIGHT = 400;
+
+    public static final int HGAP = 25;
+    public static final int VGAP = 25;
 
     public static void main(String[] args) throws Exception {
 
@@ -28,6 +29,21 @@ public class Frame {
         SettingManager settingManager = new SettingManager();
         settingManager.createSaveFile();
         Long columns = settingManager.getColumns();
+        Long movieIconWidth = settingManager.getMovieDimensionWidth();
+        Long movieIconHeight = settingManager.getMovieDimensionHeight();
+
+        /*
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+
+        int columns = (int) (width / (movieIconWidth + VGAP));
+
+        System.out.println(columns);
+
+        System.out.println(width + " " + height);
+
+         */
 
         Window window = new Window();
         window.setTitle("Movie collector");
@@ -36,7 +52,7 @@ public class Frame {
         window.createMenu();
         window.setIconImage("images/appIcon.png");
 
-        JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(columns), 25, 25));
+        JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(columns), HGAP, VGAP));
         panel.setBackground(Color.DARK_GRAY);
 
         String fileName = "movieList.txt";
@@ -56,7 +72,7 @@ public class Frame {
 
                 // Rescale the image to fit the button
                 Image img = icon.getImage() ;
-                Image newimg = img.getScaledInstance(MOVIE_ICONE_WIDTH, MOVIE_ICONE_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ;
+                Image newimg = img.getScaledInstance(Math.toIntExact(movieIconWidth), Math.toIntExact(movieIconHeight),  java.awt.Image.SCALE_SMOOTH ) ;
                 icon = new ImageIcon( newimg );
 
                 JButton button = new JButton(movieFileName, icon);
@@ -65,7 +81,7 @@ public class Frame {
                 button.setBackground(Color.DARK_GRAY);
                 button.setForeground(Color.DARK_GRAY);
                 button.setBorder(new LineBorder(Color.DARK_GRAY));
-                button.setPreferredSize(new Dimension(MOVIE_ICONE_WIDTH, MOVIE_ICONE_HEIGHT));
+                button.setPreferredSize(new Dimension(Math.toIntExact(movieIconWidth), Math.toIntExact(movieIconHeight)));
                 button.addActionListener(new ActionListener()
                 {
                     public void actionPerformed(ActionEvent e)

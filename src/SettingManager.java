@@ -10,6 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class SettingManager {
+    private static final int MOVIE_ICON_ORGINAL_WIDTH = 250;
+    private static final int MOVIE_ICON_ORGINAL_HEIGHT = 400;
+
     File FilePath = new File("settings.json");
     Gson gson = new Gson();
 
@@ -31,15 +34,15 @@ public class SettingManager {
     }
 
     public void saveMovieIconSize(double scale) throws IOException, ParseException {
-        double movieIconWidth = 250 * scale;
-        double movieIconHeight = 400 * scale;
+        int movieIconWidth = (int) (MOVIE_ICON_ORGINAL_WIDTH * scale);
+        int movieIconHeight = (int) (MOVIE_ICON_ORGINAL_HEIGHT * scale);
 
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("settings.json"));
 
         JSONObject dimensions = (JSONObject) jsonObject.get("dimensions");
-        dimensions.put("movieIconWidth", movieIconWidth);
-        dimensions.put("movieIconHeight", movieIconHeight);
+        dimensions.put("movieIconWidth", (int) movieIconWidth);
+        dimensions.put("movieIconHeight", (int) movieIconHeight);
 
         Files.write(Paths.get("settings.json"), jsonObject.toJSONString().getBytes());
     }

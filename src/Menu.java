@@ -1,7 +1,12 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Menu {
+
+    private static final int VGAP = 25;
+    private static final int ORGINAL_MOVIE_ICON_HEIGHT = 400;
+    private static final int ORGINAL_MOVIE_ICON_WIDHT = 250;
 
     final JMenuBar menuBar = new JMenuBar();
     JMenu menu;
@@ -39,22 +44,27 @@ public class Menu {
 
     public void createMenu_settings_movieIconSize() throws Exception {
         group = new ButtonGroup();
-        columnSubmenu = new JMenu("Number of colums");
+        columnSubmenu = new JMenu("Movie Icon Size");
+        addMovieIconSizeOption("Extremely Small", 0.4);
+        addMovieIconSizeOption("Very small", 0.6);
         addMovieIconSizeOption("Small", 0.8);
         addMovieIconSizeOption("Medium", 1);
         addMovieIconSizeOption("Large", 1.2);
+        addMovieIconSizeOption("Very Large", 1.4);
+        addMovieIconSizeOption("Extremely Large", 1.6);
 
         submenu.add(columnSubmenu);
     }
 
     public void addMovieIconSizeOption(String optionName, double scale) throws Exception {
         SettingManager settingManager = new SettingManager();
-        Long selectedNumbOfColumns = settingManager.getColumns();
+        double selectedScale = (double) settingManager.getMovieDimensionHeight()/400;
+
+        System.out.println(selectedScale);
 
         JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
         rbMenuItem.addActionListener(new MovieIconSizeSettingActionListener(scale));
-
-        //if (Math.toIntExact(selectedNumbOfColumns) == Columns) rbMenuItem.setSelected(true);
+        if (selectedScale == scale) rbMenuItem.setSelected(true);
         group.add(rbMenuItem);
         columnSubmenu.add(rbMenuItem);
     }
@@ -71,17 +81,25 @@ public class Menu {
         addNumberOfColumnsOption("9", 9);
         addNumberOfColumnsOption("10", 10);
         addNumberOfColumnsOption("11", 11);
+        addNumberOfColumnsOption("Auto", 0);
 
         submenu.add(columnSubmenu);
     }
 
     public void addNumberOfColumnsOption(String optionName, int Columns) throws Exception {
-        SettingManager settingManager = new SettingManager();
-        Long selectedNumbOfColumns = settingManager.getColumns();
-
         JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
+        if (Columns == 0) {
+            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+            int width = gd.getDisplayMode().getWidth();
+            int height = gd.getDisplayMode().getHeight();
+            Columns = (int) (width / (ORGINAL_MOVIE_ICON_WIDHT + VGAP));
+            rbMenuItem.setSelected(true);
+        } else {
+            SettingManager settingManager = new SettingManager();
+            Long selectedNumbOfColumns = settingManager.getColumns();
+            if (Math.toIntExact(selectedNumbOfColumns) == Columns) rbMenuItem.setSelected(true);
+        }
         rbMenuItem.addActionListener(new ColumnSettingActionListener(Columns));
-        //if (Math.toIntExact(selectedNumbOfColumns) == Columns) rbMenuItem.setSelected(true);
         group.add(rbMenuItem);
         columnSubmenu.add(rbMenuItem);
     }
