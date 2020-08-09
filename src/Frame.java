@@ -32,18 +32,7 @@ public class Frame {
         Long movieIconWidth = settingManager.getMovieDimensionWidth();
         Long movieIconHeight = settingManager.getMovieDimensionHeight();
 
-        /*
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = gd.getDisplayMode().getWidth();
-        int height = gd.getDisplayMode().getHeight();
 
-        int columns = (int) (width / (movieIconWidth + VGAP));
-
-        System.out.println(columns);
-
-        System.out.println(width + " " + height);
-
-         */
 
         Window window = new Window();
         window.setTitle("Movie collector");

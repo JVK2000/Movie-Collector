@@ -4,9 +4,7 @@ import java.awt.event.KeyEvent;
 
 public class Menu {
 
-    private static final int VGAP = 25;
-    private static final int ORGINAL_MOVIE_ICON_HEIGHT = 400;
-    private static final int ORGINAL_MOVIE_ICON_WIDHT = 250;
+    private static final int PIXELS_BTW_MOVIE_ICONS = 425;
 
     final JMenuBar menuBar = new JMenuBar();
     JMenu menu;
@@ -82,7 +80,6 @@ public class Menu {
         addNumberOfColumnsOption("10", 10);
         addNumberOfColumnsOption("11", 11);
         addNumberOfColumnsOption("Auto", 0);
-
         submenu.add(columnSubmenu);
     }
 
@@ -90,9 +87,8 @@ public class Menu {
         JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
         if (Columns == 0) {
             GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-            int width = gd.getDisplayMode().getWidth();
-            int height = gd.getDisplayMode().getHeight();
-            Columns = (int) (width / (ORGINAL_MOVIE_ICON_WIDHT + VGAP));
+            float width = gd.getDisplayMode().getWidth();
+            Columns = (int) (width / PIXELS_BTW_MOVIE_ICONS);
             rbMenuItem.setSelected(true);
         } else {
             SettingManager settingManager = new SettingManager();
