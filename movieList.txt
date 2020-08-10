@@ -1,3 +1,87 @@
+/mnt/f/Film/2001.A.Space.Odyssey.1968.2160p.UHD.BluRay.Remux.HDR.HEVC.DTS-HD.MA.5.1-PmP.mkv
+/mnt/f/Film/A.Quiet.Place.2018.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/A.Star.Is.Born.2018.2160p.UHD.BluRay.Remux.HDR.HEVC.Atmos-PmP.mkv
+/mnt/f/Film/Ant-Man and the Wasp (2018) [4K]/Ant-Man and the Wasp (2018) [4K].mkv
+/mnt/f/Film/Aquaman (2018) [4K]/Aquaman (2018) [4K].mkv
+/mnt/f/Film/Avengers - Age Of Ultron [4K]/Avengers - Age Of Ultron [4K].mkv
+/mnt/f/Film/Birds Of Prey And The Fantabulous Emancipation Of One Harley Quinn (2020) [4K]/Birds Of Prey And The Fantabulous Emancipation Of One Harley Quinn (2020) [4K].mkv
+/mnt/f/Film/Black.Panther.2018.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/Captain America Civil War (2016) [4K]/Captain America Civil War (2016) [4K].mkv
+/mnt/f/Film/Deadpool.2.2018.Super.Duper.Cut.2160p.UHD.BluRay.Remux.HDR.HEVC.Atmos-eXcommunicado.mkv
+/mnt/f/Film/Detroit.2017.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/Doctor Strange (2016) [4K]/Doctor Strange (2016) [4K].mkv
+/mnt/f/Film/Escape.From.New.York.1981.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/Escape.Plan.2013.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/Evil.Dead.II.1987.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/Fences (2016) [1080p]/Fences (2016) [1080p].mp4
+/mnt/f/Film/First.Blood.1982.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/First.Man.2018.2160p.UHD.BluRay.Remux.HDR.HEVC.Atmos-PmP.mkv
+/mnt/f/Film/Forrest.Gump.1994.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/G.I.Joe.Retaliation.2013.2160p.UHD.BluRay.REMUX.HDR.HEVC.TrueHD.7.1-EPSiLON.mkv
+/mnt/f/Film/G.I.Joe.The.Rise.of.Cobra.2009.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/Gladiator (2000) [4K]/Gladiator (2000) [4K].mkv
+/mnt/f/Film/Hansel.and.Gretel.Witch.Hunters.2013.Theatrical.2160p.UHD.BluRay.REMUX.HDR.HEVC.TrueHD.5.1-EPSiLON.mkv
+/mnt/f/Film/Hereditary.2018.2160p.UHD.BluRay.Remux.HDR.HEVC.DTS-HD.MA.5.1-HEZKY.mkv
+/mnt/f/Film/Hook.1991.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-PmP.mkv
+/mnt/f/Film/Hostiles.2017.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/Hotel.Artemis.2018.2160p.UHD.BluRay.REMUX.SDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/How.to.Train.Your.Dragon.2.2014.2160p.UHD.BluRay.Remux.HDR.HEVC.DTS-X-PmP.mkv
+/mnt/f/Film/How.to.Train.Your.Dragon.2010.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-X-EPSiLON.mkv
+/mnt/f/Film/Hunter Killer (2018) [4K]/Hunter Killer (2018) [4K].mkv
+/mnt/f/Film/Incredibles 2 2018 2160p UHD Blu-ray Remux HEVC HDR10 TrueHD Atmos 7.1-INCREDIBLES24K.mkv
+/mnt/f/Film/It (2017) [1080p]/It (2017) [1080p].mp4
+/mnt/f/Film/Jack.Reacher.2012.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.7.1-EPSiLON.mkv
+/mnt/f/Film/Jack.Ryan.Shadow.Recruit.2014.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.7.1-EPSiLON.mkv
+/mnt/f/Film/Johnny.English.Strikes.Again.2018.2160p.UHD.BluRay.Remux.HDR.HEVC.DTS-X-PmP.mkv
+/mnt/f/Film/Joy.2015.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-HD.MA.5.1-EPSiLON.mkv
+/mnt/f/Film/Jumanji Welcome to the Jungle 2160p UHD Blu-ray Remux HEVC HDR10 TrueHD Atmos 7.1.mkv
+/mnt/f/Film/Jurassic World 2015 2160p UHD Blu-ray Remux HEVC DTS-X 7.1.mkv
+/mnt/f/Film/Jurassic.Park.1993.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-X-EPSiLON.mkv
+/mnt/f/Film/Jurassic.Park.III.2001.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-X-EPSiLON.mkv
+/mnt/f/Film/Jurassic.World.Fallen.Kingdom.2018.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-X-EPSiLON.mkv
+/mnt/f/Film/Justice League (2017) [4K]/Justice League (2017) [4K].mkv
+/mnt/f/Film/Kin.2018.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-X-EPSiLON.mkv
+/mnt/f/Film/Knowing.2009.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/Law.Abiding.Citizen.2009.2160p.UHD.BluRay.Remux.HDR.HEVC.Atmos-PmP.mkv
+/mnt/f/Film/Mamma Mia 2008 2160p UHD Blu-ray Remux HEVC HDR10 DTS-X 7.1.mkv
+/mnt/f/Film/Mamma Mia! Here We Go Again 2018 2160p UHD Blu-ray Remux HEVC TrueHD Atmos 7.1-MAMMAMIA.mkv
+/mnt/f/Film/Manchester By The Sea (2016) [1080p]/Manchester By The Sea (2016) [1080p].mp4
+/mnt/f/Film/Maze Runner The Death Cure 2018 2160p UHD Blu-ray Remux HEVC HDR10 TrueHD Atmos 7.1.mkv
+/mnt/f/Film/Mission Impossible 1996 2160p UHD Blu-ray Remux HEVC HDR10 TrueHD 5.1.mkv
+/mnt/f/Film/Mission.Impossible.Fallout.2018.2160p.UHD.BluRay.Remux.HDR.HEVC.Atmos-PmP.mkv
+/mnt/f/Film/Mission.Impossible.Ghost.Protocol.2011.2160p.UHD.BluRay.REMUX.HDR.HEVC.TrueHD.7.1-EPSiLON.mkv
+/mnt/f/Film/Mission.Impossible.II.2000.2160p.UHD.BluRay.REMUX.HDR.HEVC.TrueHD.5.1-EPSiLON.mkv
+/mnt/f/Film/Mission.Impossible.III.2006.2160p.UHD.BluRay.REMUX.HDR.HEVC.TrueHD.5.1-EPSiLON.mkv
+/mnt/f/Film/Mission.Impossible.Rogue.Nation.2015.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/Oceans.Eight.2018.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/Overlord (2018) [4K]/Overlord (2018) [4K].mkv
+/mnt/f/Film/Paddington.2.2017.2160p.UHD.BluRay.REMUX.HDR.HEVC.Atmos-EPSiLON.mkv
+/mnt/f/Film/Patriot.Games.1992.2160p.UHD.BluRay.REMUX.HDR.HEVC.TrueHD.5.1-EPSiLON.mkv
+/mnt/f/Film/Peter Rabbit 2018 2160p UHD Blu-ray HEVC HDR10 TrueHD Atmos 7.1.mkv
+/mnt/f/Film/Phantom Thread 2017 2160p UHD Blu-ray Remux HEVC HDR10 DTS-X 7.1.mkv
+/mnt/f/Film/Philadelphia.1993.2160p.UHD.BluRay.Remux.HDR.HEVC.Atmos-PmP.mkv
+/mnt/f/Film/Predator (1987) [4K]/Predator (1987) [4K].mkv
+/mnt/f/Film/Predators (2010) [4K]/Predators (2010) [4K].mkv
+/mnt/f/Film/Robin Hood (2018) [4K]/Robin Hood (2018) [4K].mkv
+/mnt/f/Film/Room (2015) [1080p]/Room (2015) [1080p].mp4
+/mnt/f/Film/Solo (2018) [4K]/Solo (2018) [4K].mkv
+/mnt/f/Film/Sonic The Hedgehog (2020) [4K]/Sonic The Hedgehog (2020) [4K].mkv
+/mnt/f/Film/Star Wars Episode VII - The Force Awakens (2015) [4K]/Star Wars Episode VII - The Force Awakens (2015) [4K].mkv
+/mnt/f/Film/Star Wars The Last Jedi (2017) [4K]/Star Wars The Last Jedi (2017) [4K].mkv
+/mnt/f/Film/Still Alice (2014) [1080p]/Still Alice (2014) [1080p].mp4
+/mnt/f/Film/The Avengers [4K]/The Avengers [4K].mkv
+/mnt/f/Film/The Call Of The Wild (2020) [4K]/The Call Of The Wild (2020) [4K].mkv
+/mnt/f/Film/The Dark Knight (2008) [4K]/The Dark Knight (2008) [4K].mkv
+/mnt/f/Film/The Dark Knight Rises (2012) [4K]/The Dark Knight Rises (2012) [4K].mkv
+/mnt/f/Film/The Grand Budapest Hotel (2014) [1080p]/The Grand Budapest Hotel (2014) [1080p].mp4
+/mnt/f/Film/The Grinch (2018) [4K]/The Grinch (2018) [4K].mkv
+/mnt/f/Film/The.Lost.World.Jurassic.Park.1997.2160p.UHD.BluRay.REMUX.HDR.HEVC.DTS-X-EPSiLON.mkv
+/mnt/f/Film/Top Gun (1986) [4K]/Top Gun (1986) [4K].mkv
+/mnt/f/Film/Venom (2018) [4K]/Venom (2018) [4K].mkv
+/mnt/f/Film/War Of The Worlds (2005) [4K]/War Of The Worlds (2005) [4K].mkv
+/mnt/f/Film/Weathering With You (2019) [4K]/Weathering With You (2019) [4K].mkv
+/mnt/f/Film/Widows (2018) [4K]/Widows (2018) [4K].mkv
+/mnt/f/Film/World Trade Center (2006) [1080p]/World Trade Center (2006) [1080p].mp4
 /mnt/e/Movies/Movies/1917(2019)[4K]/1917(2019)[4K].mkv
 /mnt/e/Movies/Movies/300 (2006) [1080p]/300 (2006) [1080p].mp4
 /mnt/e/Movies/Movies/A Beautiful Day In The Neighborhood (2019) [4K]/A Beautiful Day In The Neighborhood (2019) [4K].mkv

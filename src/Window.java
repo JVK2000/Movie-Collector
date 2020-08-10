@@ -41,12 +41,11 @@ public class Window {
         scrPane.getVerticalScrollBar().setUnitIncrement(20);
         frame.add(scrPane);
         frame.setVisible(true);
-
     }
 
     public void restartApplication() throws Exception {
-        frame.setVisible(false);
-        Frame.createWindow2();
+        frame.dispose();
+        Frame.main(null);
     }
 
     public void removeLoadScreen(){
@@ -58,11 +57,24 @@ public class Window {
         menu.createMenu();
         menu.createMenu_refreshMovieList();
         menu.addSeparator();
-        menu.CreateMenu_settings();
+        menu.createMenu_selectMovieFolder();
+        menu.createMenu_settings();
         menu.createMenu_settings_movieIconSize();
         menu.createMenu_settings_numberOfColumns();
         menu.addSubmenuToMenu();
         frame.setJMenuBar(menu.getMenuBar());
+    }
+
+    public void setFullScreanBorderless() {
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setUndecorated(true);
+    }
+    public void setFullScrean() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+        setSize(width, height);
+
     }
 
 }

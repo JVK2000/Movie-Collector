@@ -40,7 +40,7 @@ public class Menu {
         return menuBar;
     }
 
-    public void CreateMenu_settings() {
+    public void createMenu_settings() {
         submenu = new JMenu("Settings");
         submenu.setMnemonic(KeyEvent.VK_S);
     }
@@ -65,7 +65,7 @@ public class Menu {
         System.out.println(selectedScale);
 
         JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
-        rbMenuItem.addActionListener(new MovieIconSizeSettingActionListener(scale));
+        rbMenuItem.addActionListener(new MovieIconSizeSettingActionListener(scale, window));
         if (selectedScale == scale) rbMenuItem.setSelected(true);
         group.add(rbMenuItem);
         columnSubmenu.add(rbMenuItem);
@@ -110,4 +110,10 @@ public class Menu {
     }
 
 
+    public void createMenu_selectMovieFolder() {
+        JMenuItem menuItem = new JMenuItem("Select Movie Folder", KeyEvent.VK_T);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_1));
+        menuItem.addActionListener(new SelectMovieFolderActionListener());
+        menu.add(menuItem);
+    }
 }

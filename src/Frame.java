@@ -9,13 +9,12 @@ import org.json.simple.parser.ParseException;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Frame {
@@ -24,21 +23,16 @@ public class Frame {
     public static final int VGAP = 25;
 
     public static void main(String[] args) throws Exception {
-        createWindow2();
-
-    }
-
-    public static void createWindow2() throws Exception {
         // Creates settings file if no one exists
         SettingManager settingManager = new SettingManager();
         settingManager.createSaveFile();
         Long columns = settingManager.getColumns();
-        Long movieIconWidth = settingManager.getMovieDimensionWidth();
-        Long movieIconHeight = settingManager.getMovieDimensionHeight();
+        double movieIconWidth = settingManager.getMovieDimensionWidth();
+        double movieIconHeight = settingManager.getMovieDimensionHeight();
 
         Window window = new Window();
         window.setTitle("Movie collector");
-        window.setSize(1500, 3000);
+        window.setFullScrean();
         window.addLoadScreen("gifs/Dual Ring-1.5s-800px (1).gif", 200, 200);
         window.createMenu(window);
         window.setIconImage("images/appIcon.png");
@@ -54,49 +48,61 @@ public class Frame {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (!(line.equals(""))) {
-
                 // the movie files name. Splits the string into parts, where / is the devider. Uses the last index to get the movie name.
                 int movieFilePositionInPath = line.split("/").length - 1;
                 String movieFileName = line.split("/")[movieFilePositionInPath];
 
-                ImageIcon icon = new ImageIcon("C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG");
+                String imageFile = "C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG";
+                ImageIcon icon = new ImageIcon(imageFile);
 
                 // Rescale the image to fit the button
                 Image img = icon.getImage() ;
-                Image newimg = img.getScaledInstance(Math.toIntExact(movieIconWidth), Math.toIntExact(movieIconHeight),  java.awt.Image.SCALE_SMOOTH ) ;
-                icon = new ImageIcon( newimg );
 
-                JButton button = new JButton(movieFileName, icon);
+                Image newimg = img.getScaledInstance((int) movieIconWidth, (int) movieIconHeight,  java.awt.Image.SCALE_SMOOTH ) ;
+                icon = new ImageIcon(newimg);
+
+                JButton button;
+
+                File imfile = new File(imageFile);
+                if (imfile.exists()) {
+                    button = new JButton(icon);
+                    button.setBackground(Color.DARK_GRAY);
+
+                } else {
+                    button = new JButton(movieFileName.split("\\(")[0]);
+                    button.setForeground(Color.white);
+                    int min = 0;
+                    int max = 200;
+                    int redIndex = ThreadLocalRandom.current().nextInt(min, max + 1);
+                    int greenIndex = ThreadLocalRandom.current().nextInt(min, max + 1);
+                    int blueIndex = ThreadLocalRandom.current().nextInt(min, max + 1);
+
+                    System.out.println(redIndex + " " + greenIndex + " " + blueIndex);
+
+                    Color myWhite = new Color(redIndex, greenIndex, blueIndex);
+                    button.setBackground(myWhite);
+                    button.setFont(new Font("Arial", Font.BOLD, 20));
+
+                }
 
                 // Makes the button bordesrs "invisable"
-                button.setBackground(Color.DARK_GRAY);
-                button.setForeground(Color.DARK_GRAY);
                 button.setBorder(new LineBorder(Color.DARK_GRAY));
-                button.setPreferredSize(new Dimension(Math.toIntExact(movieIconWidth), Math.toIntExact(movieIconHeight)));
-                button.addActionListener(new ActionListener()
-                {
-                    public void actionPerformed(ActionEvent e)
-                    {
-                        // Fatches the disc the movie is stored on
-                        String fileDisc = line.split("/")[2];
+                button.setPreferredSize(new Dimension((int) movieIconWidth, (int) movieIconHeight));
 
-                        // Removes the mnt/ part of the path.
-                        String filePath = line.substring(6);
+                // Fatches the disc the movie is stored on
+                String fileDisc = line.split("/")[2];
 
-                        File file = new File(fileDisc + ":" + filePath);
+                // Removes the mnt/ part of the path.
+                String filePath = line.substring(6);
 
-                        //File file = new File("E:/Movies/Movies/" + movieFileName.split("\\.")[0] + "/" + movieFileName);
-                        Desktop desktop = Desktop.getDesktop();
-                        if(!(file.exists())) {
-                            file = new File("F:/Film/" + movieFileName.split("\\.")[0] + "/" + movieFileName);
-                        }
-                        if(file.exists()) {
-                            try {
-                                desktop.open(file);
-                            } catch (IOException ioException) {
-                                ioException.printStackTrace();
-                            }
-                        }
+                File file = new File(fileDisc + ":" + filePath);
+                Desktop desktop = Desktop.getDesktop();
+
+                button.addActionListener(e -> {
+                    try {
+                        desktop.open(file);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
                     }
                 });
                 panel.add(button);
@@ -107,7 +113,6 @@ public class Frame {
 
         window.removeLoadScreen();
         window.makeScrolable(panel);
-
     }
 }
 

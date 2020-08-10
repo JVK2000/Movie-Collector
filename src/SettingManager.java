@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -29,9 +30,29 @@ public class SettingManager {
             dimensionsObject.put("movieIconHeight", movieIconHeight);
             sampleObject.put("dimensions", dimensionsObject);
 
+            JSONArray jsonArray = new JSONArray();
+            sampleObject.put("moviePaths", jsonArray);
+
             Files.write(Paths.get("settings.json"), sampleObject.toJSONString().getBytes());
        }
     }
+
+    public void saveMoviePath(String path) throws IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("settings.json"));
+        JSONArray jsonArray = (JSONArray) jsonObject.get("moviePaths");
+        jsonArray.add(path);
+        jsonObject.put("moviePaths", jsonArray);
+        Files.write(Paths.get("settings.json"), jsonObject.toJSONString().getBytes());
+    }
+
+    public JSONArray getMoviePath() throws Exception {
+        JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("settings.json");
+        JSONArray jsonArray = (JSONArray) jsonObject.get("moviePaths");
+        return jsonArray;
+    }
+
+
 
     public void saveMovieIconSize(double scale) throws IOException, ParseException {
         int movieIconWidth = (int) (MOVIE_ICON_ORGINAL_WIDTH * scale);
@@ -59,16 +80,16 @@ public class SettingManager {
         return (long) jsonObject.get("columns");
     }
 
-    public Long getMovieDimensionWidth() throws Exception {
+    public long getMovieDimensionWidth() throws Exception {
         JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("settings.json");
         JSONObject dimensions = (JSONObject) jsonObject.get("dimensions");
-        return (Long) dimensions.get("movieIconWidth");
+        return (long) dimensions.get("movieIconWidth");
     }
 
-    public Long getMovieDimensionHeight() throws Exception {
+    public long getMovieDimensionHeight() throws Exception {
         JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("settings.json");
         JSONObject dimensions = (JSONObject) jsonObject.get("dimensions");
-        return (Long) dimensions.get("movieIconHeight");
+        return (long) dimensions.get("movieIconHeight");
     }
 
     public static Object readJsonSimpleDemo(String filename) throws Exception {
