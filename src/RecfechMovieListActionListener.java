@@ -1,13 +1,13 @@
-import org.json.simple.JSONArray;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class RecfechMovieListActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         SettingManager settingManager = new SettingManager();
 
+        /*
         try {
             Runtime.getRuntime().exec(String.format("bash -c \"%s\"", "> movieList.txt"));
             JSONArray pathList = settingManager.getMoviePath();
@@ -31,6 +31,8 @@ public class RecfechMovieListActionListener implements ActionListener {
             exception.printStackTrace();
         }
 
+         */
+
 
         /*
         String command = "find " + MovieFolder + " -type f -name '*.mkv' -o -name '*.mp4' -o -name '*.wmv' -o -name '*.flv' -o -name '*.webm' -o -name '*.mov' | awk -F/ '{print $NF}' > movieList.txt";
@@ -44,7 +46,7 @@ public class RecfechMovieListActionListener implements ActionListener {
             ioException.printStackTrace();
         }
 
-
+*/
 
         BingImageSearchv7Quickstart bingImageSearchv7Quickstart = new BingImageSearchv7Quickstart();
         try {
@@ -53,9 +55,11 @@ public class RecfechMovieListActionListener implements ActionListener {
             ioException.printStackTrace();
         }
 
-    }
 
-         */
 
     }
+
+
+
+
 }

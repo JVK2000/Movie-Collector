@@ -2,11 +2,13 @@
 Licensed under the MIT License.*/
 
 import com.google.gson.*;
+import org.json.simple.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -38,6 +40,8 @@ class BingImageSearchv7Quickstart {
 // ***********************************************
 // *** Update or verify the following values. ***
 // **********************************************
+
+    public static JSONObject object = new JSONObject();
 
     // Bing Search V7 subscription key.
     static String subscriptionKey = "675f17090916467cbdb6e24daa409f8e";
@@ -83,36 +87,9 @@ class BingImageSearchv7Quickstart {
         return gson.toJson(json);
     }
 
-    /*public static void main(String[] args) throws Exception {
-        String fileName = "movieList.txt";
-        Path moviePath = Paths.get(fileName);
-        Scanner scanner = new Scanner(moviePath);
-
-        FileWriter fw = new FileWriter("imageURLs.txt", false);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter out = new PrintWriter(bw);
-
-        while (scanner.hasNextLine()) {
-            String searchTerm = scanner.nextLine().split("\\.")[0];
-            System.out.println("Searching the Web for: " + searchTerm + " poster");
-            try {
-                SearchResults result = SearchImages(searchTerm + " poster");
-                JsonParser parser = new JsonParser();
-                JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
-                JsonArray results = json.getAsJsonArray("value");
-                JsonObject first_result = (JsonObject) results.get(0);
-                String resultURL = first_result.get("thumbnailUrl").getAsString();
-                out.println(resultURL);
-                System.out.println(resultURL);
-            } catch (Exception e) {
-                out.println("URL missing");
-                System.out.println("URL missing");
-            }
-            TimeUnit.MILLISECONDS.sleep(500);
-        }
-        out.close();
-        scanner.close();
-    }*/
+    public static void main(String[] args) throws Exception {
+        URLSearch();
+    }
 
 
     public static void URLSearch() throws IOException, InterruptedException {
@@ -129,11 +106,11 @@ class BingImageSearchv7Quickstart {
             int movieFilePositionInPath = line.split("/").length - 1;
             String movieFileName = line.split("/")[movieFilePositionInPath];
 
-            String searchTerm = movieFileName.split("\\.")[0];
+            String searchTerm = movieFileName.split("\\.")[0].split("\\(")[0];
+            System.out.println("Searching the Web for: " + searchTerm + "movie poster");
 
-            System.out.println("Searching the Web for: " + searchTerm + " poster");
             try {
-                SearchResults result = SearchImages(searchTerm + " poster");
+                SearchResults result = SearchImages(searchTerm + "movie poster");
                 JsonParser parser = new JsonParser();
                 JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
                 JsonArray results = json.getAsJsonArray("value");
@@ -141,14 +118,21 @@ class BingImageSearchv7Quickstart {
                 String resultURL = first_result.get("thumbnailUrl").getAsString();
                 out.println(resultURL);
                 System.out.println(resultURL);
+                object.put(movieFileName, resultURL);
+
             } catch (Exception e) {
                 System.out.println(movieFileName + ": " + "URL missing");
                 out.println(movieFileName + ": " + "URL missing");
+                object.put(movieFileName, "URL missing");
+                System.out.println(e);
+
             }
-            TimeUnit.MILLISECONDS.sleep(500);
+            TimeUnit.MILLISECONDS.sleep(1000);
         }
         out.close();
         scanner.close();
+        Files.write(Paths.get("imageURL.json"), object.toJSONString().getBytes());
+
     }
 }
 
