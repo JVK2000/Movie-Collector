@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class Menu {
 
@@ -25,7 +26,7 @@ public class Menu {
         menuBar.add(menu);
     }
 
-    public void createMenu_refreshMovieList() {
+    public void createMenu_refreshMovieList() throws IOException {
         JMenuItem menuItem = new JMenuItem("Refresh movie list", KeyEvent.VK_T);
         menuItem.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_1));
         menuItem.addActionListener(new RecfechMovieListActionListener());

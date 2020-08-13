@@ -77,8 +77,6 @@ public class Frame {
                     int greenIndex = ThreadLocalRandom.current().nextInt(min, max + 1);
                     int blueIndex = ThreadLocalRandom.current().nextInt(min, max + 1);
 
-                    System.out.println(redIndex + " " + greenIndex + " " + blueIndex);
-
                     Color myWhite = new Color(redIndex, greenIndex, blueIndex);
                     button.setBackground(myWhite);
                     button.setFont(new Font("Arial", Font.BOLD, 20));
@@ -88,6 +86,10 @@ public class Frame {
                 // Makes the button bordesrs "invisable"
                 button.setBorder(new LineBorder(Color.DARK_GRAY));
                 button.setPreferredSize(new Dimension((int) movieIconWidth, (int) movieIconHeight));
+
+                System.out.println(movieFileName);
+
+                button.addMouseListener(new PopClickListener(movieFileName));
 
                 // Fatches the disc the movie is stored on
                 String fileDisc = line.split("/")[2];

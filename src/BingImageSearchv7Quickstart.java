@@ -45,9 +45,12 @@ class BingImageSearchv7Quickstart {
 
     // Bing Search V7 subscription key.
     static String subscriptionKey = "675f17090916467cbdb6e24daa409f8e";
+    //static String subscriptionKey = "2ae739d57fe04f68bf6bbdea81cb8e7c";
 
     // Bing Search V7 endpoint.
     static String host = "https://moviecollector.cognitiveservices.azure.com/";
+    //static String host = "https://westus.api.cognitive.microsoft.com/";
+
 
     static String path = "/bing/v7.0/images/search";
 
@@ -97,9 +100,12 @@ class BingImageSearchv7Quickstart {
         Path moviePath = Paths.get(fileName);
         Scanner scanner = new Scanner(moviePath);
 
+/*
         FileWriter fw = new FileWriter("imageURLs.txt", false);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter out = new PrintWriter(bw);
+
+ */
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -110,26 +116,38 @@ class BingImageSearchv7Quickstart {
             System.out.println("Searching the Web for: " + searchTerm + "movie poster");
 
             try {
+
                 SearchResults result = SearchImages(searchTerm + "movie poster");
                 JsonParser parser = new JsonParser();
+
+                Object obj = parser.parse(new FileReader("imageURL.json"));
+                // A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
+                JsonObject jsonObject = (JsonObject) obj;
+                if (!jsonObject.has(movieFileName)) {
+                    System.out.println("----------------------");
+                }
+
+                /*
                 JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
                 JsonArray results = json.getAsJsonArray("value");
                 JsonObject first_result = (JsonObject) results.get(0);
                 String resultURL = first_result.get("thumbnailUrl").getAsString();
-                out.println(resultURL);
+                //out.println(resultURL);
                 System.out.println(resultURL);
                 object.put(movieFileName, resultURL);
 
+                 */
+
             } catch (Exception e) {
                 System.out.println(movieFileName + ": " + "URL missing");
-                out.println(movieFileName + ": " + "URL missing");
+               //out.println(movieFileName + ": " + "URL missing");
                 object.put(movieFileName, "URL missing");
                 System.out.println(e);
 
             }
             TimeUnit.MILLISECONDS.sleep(1000);
         }
-        out.close();
+        //out.close();
         scanner.close();
         Files.write(Paths.get("imageURL.json"), object.toJSONString().getBytes());
 
