@@ -153,7 +153,7 @@
 /mnt/e/Movies/Movies/Disney/Toy Story (1995) [1080p]/Toy Story (1995) [1080p].mp4
 /mnt/e/Movies/Movies/Disney/Toy Story 2 (1999) [1080p]/Toy Story 2 (1999) [1080p].mp4
 /mnt/e/Movies/Movies/Disney/Toy Story 3 (2010) [1080p]/Toy Story 3 (2010) [1080p].mp4
-/mnt/e/Movies/Movies/Disney/Toy Story 4 (2019) [REPACK] [2160p] [4K] [BluRay] [7.1]/Toy.Story.4.2019.REPACK.2160p.4K.BluRay.x265.10bit.AAC7.1-[YTS.MX].mkv
+/mnt/e/Movies/Movies/Disney/Toy Story 4 (2019) [4K]/Toy Story 4 (2019) [4K].mkv
 /mnt/e/Movies/Movies/Disney/Up (2009) [1080p]/Up (2009) [1080p].mp4
 /mnt/e/Movies/Movies/Disney/WALL-E (2008) [1080p]/WALL-E (2008) [1080p].mp4
 /mnt/e/Movies/Movies/Disney/Wreck-It Ralph (2012) [1080p]/Wreck-It Ralph (2012) [1080p].mp4
@@ -216,7 +216,7 @@
 /mnt/e/Movies/Movies/John Wick Chapter 3 - Parabellum (2019) [1080p]/John Wick Chapter 3 - Parabellum (2019) [1080p].mp4
 /mnt/e/Movies/Movies/Jojo Rabbit (2019)  [4K]/Jojo Rabbit (2019)  [4K].mkv
 /mnt/e/Movies/Movies/Joker (2019) [4K] [HDR]/Joker (2019) [4K] [HDR].mkv
-/mnt/e/Movies/Movies/Judy (2019) [BluRay] [1080p] [YTS.LT]/Judy.2019.1080p.BluRay.x264-[YTS.LT].mp4
+/mnt/e/Movies/Movies/Judy (2019) [1080p]/Judy (2019) [1080p].mp4
 /mnt/e/Movies/Movies/Jumanji The Next Level (2019) [4K]/Jumanji The Next Level (2019) [4K].mkv
 /mnt/e/Movies/Movies/Kill Bill/Kill Bill Vol 1 (2003) [1080p]/Kill Bill Vol 1 (2003) [1080p].mp4
 /mnt/e/Movies/Movies/Kill Bill/Kill Bill Vol 2 (2004) [1080p]/Kill Bill Vol 2 (2004) [1080p].mp4

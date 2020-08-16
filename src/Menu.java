@@ -33,6 +33,13 @@ public class Menu {
         menu.add(menuItem);
     }
 
+    public void createMenu_refreshWindow() throws IOException {
+        JMenuItem menuItem = new JMenuItem("Refresh Window", KeyEvent.VK_T);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_1));
+        menuItem.addActionListener(new RecfechWindowListActionListener(window));
+        menu.add(menuItem);
+    }
+
     public void addSeparator() {
         menu.addSeparator();
     }

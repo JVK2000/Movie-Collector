@@ -4,7 +4,9 @@ import org.python.util.PythonInterpreter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class RecfechMovieListActionListener implements ActionListener {
@@ -86,9 +88,26 @@ public class RecfechMovieListActionListener implements ActionListener {
         String command2 = "source ./c/Users/Josef/PycharmProjects/Movie-Collector/venv/Scripts/activate";
         String command3 = "python3 c/Users/Josef/PycharmProjects/Movie-Collector/googleSeachApi.py";
         String finalcommand = command1 + " && " + command2 + " && " + command3;
+        Process process = Runtime.getRuntime().exec(String.format("bash -c \"%s\"", finalcommand));
 
-        Runtime.getRuntime().exec(String.format("bash -c \"%s\"", finalcommand));
+        BufferedReader stdInput = new BufferedReader(new
+                InputStreamReader(process.getInputStream()));
 
+        BufferedReader stdError = new BufferedReader(new
+                InputStreamReader(process.getErrorStream()));
+
+        // Read the output from the command
+        System.out.println("Here is the standard output of the command:\n");
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
+
+        // Read any errors from the attempted command
+        System.out.println("Here is the standard error of the command (if any):\n");
+        while ((s = stdError.readLine()) != null) {
+            System.out.println(s);
+        }
 
     }
 }

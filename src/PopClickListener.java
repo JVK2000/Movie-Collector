@@ -32,8 +32,11 @@ class PopClickListener extends MouseAdapter {
 class PopUpDemo extends JPopupMenu {
     JMenuItem anItem;
     public PopUpDemo(String movieFileName) {
-        anItem = new JMenuItem("Change Image");
-        anItem.addActionListener(new changeImageActionListener(movieFileName));
+        anItem = new JMenuItem("Change Image | url");
+        anItem.addActionListener(new changeImageURLActionListener(movieFileName));
+        add(anItem);
+        anItem = new JMenuItem("Change Image | saved file ");
+        anItem.addActionListener(new changeImageSavedFileActionListener(movieFileName));
         add(anItem);
     }
 }

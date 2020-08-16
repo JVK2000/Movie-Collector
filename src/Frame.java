@@ -11,8 +11,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -52,7 +54,7 @@ public class Frame {
                 int movieFilePositionInPath = line.split("/").length - 1;
                 String movieFileName = line.split("/")[movieFilePositionInPath];
 
-                String imageFile = "C:\\Users\\Josef\\PycharmProjects\\Movie-Collector\\images\\" + movieFileName.split("\\.")[0] + ".JPG";
+                String imageFile = "movieCovers\\" + movieFileName.split("\\.")[0] + ".JPG";
                 ImageIcon icon = new ImageIcon(imageFile);
 
                 // Rescale the image to fit the button
@@ -67,6 +69,7 @@ public class Frame {
                 if (imfile.exists()) {
                     button = new JButton(icon);
                     button.setBackground(Color.DARK_GRAY);
+                    System.out.println(imfile);
 
                 } else {
                     button = new JButton(movieFileName.split("\\(")[0]);
@@ -87,7 +90,7 @@ public class Frame {
                 button.setBorder(new LineBorder(Color.DARK_GRAY));
                 button.setPreferredSize(new Dimension((int) movieIconWidth, (int) movieIconHeight));
 
-                System.out.println(movieFileName);
+                //System.out.println(movieFileName);
 
                 button.addMouseListener(new PopClickListener(movieFileName));
 
@@ -115,6 +118,27 @@ public class Frame {
 
         window.removeLoadScreen();
         window.makeScrolable(panel);
+
+
+    }
+
+    public static void restartApplication() throws IOException, URISyntaxException {
+        final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        final File currentJar = new File(Frame.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+        /* is it a jar file? */
+        if(!currentJar.getName().endsWith(".jar"))
+            return;
+
+        /* Build command: java -jar application.jar */
+        final ArrayList<String> command = new ArrayList<String>();
+        command.add(javaBin);
+        command.add("-jar");
+        command.add(currentJar.getPath());
+
+        final ProcessBuilder builder = new ProcessBuilder(command);
+        builder.start();
+        System.exit(0);
     }
 }
 

@@ -44,6 +44,8 @@ public class Window {
     }
 
     public void restartApplication() throws Exception {
+
+
         frame.dispose();
         Frame.main(null);
     }
@@ -55,6 +57,7 @@ public class Window {
     public void createMenu(Window window) throws Exception {
         Menu menu = new Menu(window);
         menu.createMenu();
+        menu.createMenu_refreshWindow();
         menu.createMenu_refreshMovieList();
         menu.addSeparator();
         menu.createMenu_selectMovieFolder();
