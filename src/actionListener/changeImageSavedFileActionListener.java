@@ -23,6 +23,12 @@ public class changeImageSavedFileActionListener extends Component implements Act
     }
 
     public void actionPerformed(ActionEvent e) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.put("Panel.background", new Color(255,0,0));
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        }
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("/"));
         chooser.setDialogTitle("chooser Title");

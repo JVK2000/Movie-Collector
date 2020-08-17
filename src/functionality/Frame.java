@@ -79,14 +79,11 @@ public class Frame {
                     Color myWhite = new Color(redIndex, greenIndex, blueIndex);
                     button.setBackground(myWhite);
                     button.setFont(new Font("Arial", Font.BOLD, 20));
-
                 }
 
                 // Makes the button borders "invisible"
                 button.setBorder(new LineBorder(Color.DARK_GRAY));
                 button.setPreferredSize(new Dimension((int) movieIconWidth, (int) movieIconHeight));
-
-                //System.out.println(movieFileName);
 
                 button.addMouseListener(new PopClickListener(movieFileName));
 
@@ -112,8 +109,6 @@ public class Frame {
         scanner.close();
         window.removeLoadScreen();
         window.makeScrollable(panel);
-
-
     }
 
     public static void restartApplication() throws IOException, URISyntaxException {
