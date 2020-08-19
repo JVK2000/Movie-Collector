@@ -15,12 +15,12 @@ public class Window {
         frame.setSize(width, height);
     }
 
-    public void addLoadScreen(String gifPath, int gifWith, int gifHeight){
+    public void addLoadScreen(String gifPath, int gifWidth, int gifHeight){
         startPanel = new JPanel();
         startPanel.setBackground(Color.DARK_GRAY);
         startPanel.setForeground(Color.DARK_GRAY);
         ImageIcon loading = new ImageIcon(gifPath);
-        loading.setImage(loading.getImage().getScaledInstance(gifWith, gifHeight, Image.SCALE_DEFAULT));
+        loading.setImage(loading.getImage().getScaledInstance(gifWidth, gifHeight, Image.SCALE_DEFAULT));
         startPanel.setLayout(new GridBagLayout());
         startPanel.add(new JLabel(loading, JLabel.CENTER));
         frame.add(startPanel);
@@ -37,12 +37,17 @@ public class Window {
         frame.setIconImage(applicationIcon);
     }
 
-    public void makeScrollable(JPanel jPanel) {
-        JScrollPane scrPane = new JScrollPane(jPanel);
+    public void setVisible() {
+        frame.setVisible(true);
+    }
+
+    public void makeScrollable(JPanel panel) {
+        JScrollPane scrPane = new JScrollPane(panel);
         scrPane.getVerticalScrollBar().setUnitIncrement(20);
         frame.add(scrPane);
         frame.setVisible(true);
     }
+
 
     public void restartApplication() throws Exception {
         frame.dispose();
@@ -77,5 +82,10 @@ public class Window {
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
         setSize(width, height);
+    }
+
+    public void add(JScrollPane pane) {
+        frame.add(pane, BorderLayout.CENTER);
+
     }
 }

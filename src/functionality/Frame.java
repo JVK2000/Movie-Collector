@@ -35,7 +35,16 @@ public class Frame {
         window.createMenu(window);
         window.setIconImage("images/appIcon.png");
 
-        JPanel panel = new JPanel(new GridLayout(0, Math.toIntExact(columns), HGAP, VGAP));
+        JPanel panel = new JPanel();
+        panel.setLayout(new WrapLayout(1, 25, 25));
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(30);
+        window.add(scrollPane);
+
+
+
+        //panel.add(new JTextField());
+
         panel.setBackground(Color.DARK_GRAY);
 
         String fileName = "movieList.txt";
@@ -108,7 +117,8 @@ public class Frame {
         }
         scanner.close();
         window.removeLoadScreen();
-        window.makeScrollable(panel);
+        window.setVisible();
+        //window.makeScrollable(panel);
     }
 
     public static void restartApplication() throws IOException, URISyntaxException {
@@ -130,4 +140,3 @@ public class Frame {
         System.exit(0);
     }
 }
-
