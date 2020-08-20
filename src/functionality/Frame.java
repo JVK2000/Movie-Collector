@@ -35,13 +35,51 @@ public class Frame {
         window.createMenu(window);
         window.setIconImage("images/appIcon.png");
 
+
+        Container  mainPanel = new Container();
+        mainPanel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        mainPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        //c.ipady = 40;      //make this component tall
+        c.weightx = 0.5;
+        c.gridx = 0;
+        c.gridy = 0;
+
+
+        SearchComponent searchComponent = new SearchComponent();
+
+        JPanel searchPanel = new JPanel();
+        JTextPane jTextPane = new JTextPane();
+        jTextPane.setText("hejjj");
+        jTextPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextPane.setText(null);
+            }
+        });
+
+
+        Button button2 = new Button("knapp");
+        button2.setBackground(Color.DARK_GRAY);
+        searchPanel.add(button2);
+        searchPanel.add(jTextPane);
+        mainPanel.add(searchPanel, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 1;
+
+
         JPanel panel = new JPanel();
         panel.setLayout(new WrapLayout(1, 25, 25));
-        JScrollPane scrollPane = new JScrollPane(panel);
+
+        mainPanel.add(panel, c);
+
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
         scrollPane.getVerticalScrollBar().setUnitIncrement(30);
         window.add(scrollPane);
-
-
 
         //panel.add(new JTextField());
 
@@ -139,4 +177,6 @@ public class Frame {
         builder.start();
         System.exit(0);
     }
+
+
 }
