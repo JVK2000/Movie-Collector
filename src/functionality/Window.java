@@ -15,10 +15,14 @@ public class Window {
         frame.setSize(width, height);
     }
 
+    public Dimension getSize() {
+        return frame.getSize();
+    }
+
     public void addLoadScreen(String gifPath, int gifWidth, int gifHeight){
         startPanel = new JPanel();
         startPanel.setBackground(Color.DARK_GRAY);
-        startPanel.setForeground(Color.DARK_GRAY);
+        //startPanel.setForeground(Color.DARK_GRAY);
         ImageIcon loading = new ImageIcon(gifPath);
         loading.setImage(loading.getImage().getScaledInstance(gifWidth, gifHeight, Image.SCALE_DEFAULT));
         startPanel.setLayout(new GridBagLayout());

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 class DemoJFileChooser extends Component {
-    JButton go;
+    MButton go;
     JFileChooser chooser;
     String chooserTitle;
 

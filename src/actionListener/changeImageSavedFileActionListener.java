@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static functionality.Frame.updateButton;
+
 public class changeImageSavedFileActionListener extends Component implements ActionListener {
     private final String movieFileName;
 
@@ -30,7 +32,7 @@ public class changeImageSavedFileActionListener extends Component implements Act
             classNotFoundException.printStackTrace();
         }
         JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("/"));
+        chooser.setCurrentDirectory(new File("/"));
         chooser.setDialogTitle("chooser Title");
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setAcceptAllFileFilterUsed(false);
@@ -59,6 +61,15 @@ public class changeImageSavedFileActionListener extends Component implements Act
         else {
             System.out.println("No Selection ");
         }
+
+        // Update the button
+        try {
+            updateButton(movieFileName);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+
     }
 
     /**

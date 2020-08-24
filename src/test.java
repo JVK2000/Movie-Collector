@@ -1,4 +1,65 @@
+import javax.swing.*;
+import javax.swing.border.AbstractBorder;
+import java.awt.*;
+/**
+ * A custom JTextField with rounded corners.
+ */
+class RoundTextField extends JTextField {
 
+    public RoundTextField(String text, int columns) {
+        super(text, columns);
+        setOpaque(false);
+        setBorder(new RoundBorder());
+    }
+
+    public void paintComponent(Graphics g) {
+        g.setColor(getBackground());
+        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1,
+                20, 20);
+        super.paintComponent(g);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("RoundTextField");
+        frame.setSize(400, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new FlowLayout());
+
+        contentPane.add(new RoundTextField("One", 60));
+        contentPane.add(new RoundTextField("Two", 20));
+        contentPane.add(new RoundTextField("Three", 20));
+
+        frame.setVisible(true);
+    }
+
+}
+
+class RoundBorder extends AbstractBorder
+{
+    public void paintBorder(Component c, Graphics g,
+                            int x, int y,
+                            int width, int height) {
+        Color oldColor = g.getColor();
+
+        g.setColor(Color.black);
+        g.drawRoundRect(x, y, width - 1, height - 1,
+                20, 20);
+
+        g.setColor(oldColor);
+    }
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(4, 4, 4, 4);
+    }
+
+    public Insets getBorderInsets(Component c, Insets insets) {
+        insets.left = insets.top = insets.right = insets.bottom = 4;
+        return insets;
+    }
+
+}
 
 /*
 class Test {
@@ -87,7 +148,7 @@ class Test implements Runnable
 
 
         /*
-        JButton button;
+        MButton button;
         JPanel pane = new JPanel();
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -98,7 +159,7 @@ class Test implements Runnable
 
 
 
-        button = new JButton("Button 1");
+        button = new MButton("Button 1");
        // if (shouldWeightX) {
             c.weightx = 0.5;
        // }
@@ -107,14 +168,14 @@ class Test implements Runnable
         c.gridy = 0;
         pane.add(button, c);
 
-        button = new JButton("Button 2");
+        button = new MButton("Button 2");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
         c.gridx = 1;
         c.gridy = 0;
         pane.add(button, c);
 
-        button = new JButton("Button 3");
+        button = new MButton("Button 3");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
         c.gridx = 2;
@@ -122,14 +183,14 @@ class Test implements Runnable
         pane.add(button, c);
 
 
-        button = new JButton("Button 4");
+        button = new MButton("Button 4");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
         c.gridx = 3;
         c.gridy = 0;
         pane.add(button, c);
 
-        button = new JButton("Long-Named Button 4");
+        button = new MButton("Long-Named Button 4");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 40;      //make this component tall
         c.weightx = 0.0;
@@ -139,7 +200,7 @@ class Test implements Runnable
 
         pane.add(button, c);
 
-        button = new JButton("5");
+        button = new MButton("5");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 0;       //reset to default
         c.weighty = 1.0;   //request any extra vertical space
