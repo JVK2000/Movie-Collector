@@ -5,22 +5,29 @@ import actionListener.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 public class Menu {
-
     private static final int PIXELS_BTW_MOVIE_ICONS = 425;
-
     final JMenuBar menuBar = new JMenuBar();
-    JMenu menu;
-    JMenu submenu, columnSubmenu;
+    JMenu menu, submenu, columnSubmenu;
     private ButtonGroup group;
     Window window;
 
     public Menu(Window window) {
         this.window = window;
     }
-
+    
+    public void createMenuItems() throws Exception {
+        createMenu();
+        createMenu_refreshWindow();
+        createMenu_refreshMovieList();
+        addSeparator();
+        createMenu_selectMovieFolder();
+        createMenu_settings();
+        createMenu_settings_movieIconSize();
+        createMenu_settings_numberOfColumns();
+        addSubmenuToMenu();
+    }
 
     public void createMenu() {
         menu = new JMenu("Menu");
@@ -30,14 +37,14 @@ public class Menu {
         menuBar.add(menu);
     }
 
-    public void createMenu_refreshMovieList() throws IOException {
+    public void createMenu_refreshMovieList() {
         JMenuItem menuItem = new JMenuItem("Refresh movie list", KeyEvent.VK_T);
         menuItem.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_1));
         menuItem.addActionListener(new RefreshMovieListActionListener());
         menu.add(menuItem);
     }
 
-    public void createMenu_refreshWindow() throws IOException {
+    public void createMenu_refreshWindow() {
         JMenuItem menuItem = new JMenuItem("Refresh Functionality.Window", KeyEvent.VK_T);
         menuItem.setAccelerator(KeyStroke.getKeyStroke((char) KeyEvent.VK_1));
         menuItem.addActionListener(new RefreshWindowListActionListener(window));
@@ -73,8 +80,6 @@ public class Menu {
     public void addMovieIconSizeOption(String optionName, double scale) throws Exception {
         SettingManager settingManager = new SettingManager();
         double selectedScale = (double) settingManager.getMovieDimensionHeight()/400;
-
-        System.out.println(selectedScale);
 
         JRadioButtonMenuItem rbMenuItem = new JRadioButtonMenuItem(optionName);
         rbMenuItem.addActionListener(new MovieIconSizeSettingActionListener(scale, window));

@@ -17,8 +17,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Frame {
 
-    static JPanel panel = new JPanel();
-    static Window window = new Window();
+    static JPanel panel = new JPanel();;
+    static Window window;
 
     public static void main(String[] args) throws Exception {
         // Creates settings file if no one exists
@@ -27,11 +27,14 @@ public class Frame {
         double movieIconWidth = settingManager.getMovieDimensionWidth();
         double movieIconHeight = settingManager.getMovieDimensionHeight();
 
-        window.setTitle("Movie collector");
+        window = new Window("Movie collector");
         window.setFullScreen();
         window.addLoadScreen("GIFs/Dual Ring-1.5s-800px (1).gif", 200, 200);
-        window.createMenu(window);
         window.setIconImage("images/appIcon.png");
+
+        Menu menu = new Menu(window);
+        menu.createMenuItems();
+        window.setJMenuBar(menu.getMenuBar());
 
         JScrollPane scrollPane = getJScrollPane();
         window.add(scrollPane);
@@ -53,7 +56,7 @@ public class Frame {
         }
         scanner.close();
         window.removeLoadScreen();
-        window.setVisible();
+        window.setVisible(true);
     }
 
     private static JScrollPane getJScrollPane() {
